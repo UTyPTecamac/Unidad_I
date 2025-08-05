@@ -165,16 +165,18 @@
         }
 
         .game-area {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 400px;
             gap: 30px;
             padding: 30px;
+            min-height: 600px;
         }
 
         .crossword-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .level-info {
@@ -205,11 +207,11 @@
 
         .crossword-grid {
             display: grid;
-            grid-template-columns: repeat(20, 32px);
-            grid-template-rows: repeat(15, 32px);
-            gap: 2px;
+            grid-template-columns: repeat(20, 28px);
+            grid-template-rows: repeat(15, 28px);
+            gap: 1px;
             background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 20px;
+            padding: 15px;
             border-radius: 20px;
             box-shadow: 
                 0 20px 40px rgba(0, 0, 0, 0.08),
@@ -217,6 +219,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             justify-self: center;
+            max-width: 100%;
         }
 
         .crossword-grid::before {
@@ -232,16 +235,16 @@
         }
 
         .cell {
-            width: 32px;
-            height: 32px;
-            border: 2px solid #e2e8f0;
+            width: 28px;
+            height: 28px;
+            border: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            border-radius: 6px;
+            border-radius: 4px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             box-shadow: 
@@ -279,7 +282,7 @@
             border: none;
             background: transparent;
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
             outline: none;
@@ -308,16 +311,16 @@
             background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 
                 0 20px 40px rgba(0, 0, 0, 0.08),
                 0 0 0 1px rgba(255, 255, 255, 0.2);
             height: fit-content;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 400px;
+            max-height: 600px;
+            overflow-y: auto;
         }
 
         .clues-panel::before {
@@ -333,9 +336,9 @@
         }
 
         .clues-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
         .clues-section {
@@ -361,11 +364,11 @@
         .clue-item {
             display: flex;
             align-items: flex-start;
-            gap: 18px;
-            padding: 18px;
-            margin-bottom: 12px;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
             background: linear-gradient(145deg, #f8fafc 0%, #ffffff 100%);
-            border-radius: 16px;
+            border-radius: 12px;
             border: 1px solid rgba(18, 94, 71, 0.1);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
@@ -410,14 +413,14 @@
         .clue-number {
             background: linear-gradient(135deg, #125e47 0%, #2e7d32 100%);
             color: white;
-            border-radius: 12px;
-            width: 32px;
-            height: 32px;
+            border-radius: 10px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 12px;
             flex-shrink: 0;
             box-shadow: 0 4px 8px rgba(18, 94, 71, 0.3);
             transition: all 0.3s ease;
@@ -448,8 +451,8 @@
 
         .clue-text {
             flex: 1;
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 13px;
+            line-height: 1.3;
         }
 
         .progress-bar {
@@ -675,6 +678,16 @@
             75% { transform: translateX(5px); }
         }
 
+        @media (max-width: 1200px) {
+            .game-area {
+                grid-template-columns: 1fr 350px;
+            }
+            
+            .clues-panel {
+                width: 350px;
+            }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 15px;
@@ -723,43 +736,46 @@
             }
             
             .game-area {
+                grid-template-columns: 1fr;
                 gap: 25px;
                 padding: 20px;
             }
             
             .clues-container {
-                grid-template-columns: 1fr;
-                gap: 25px;
+                flex-direction: column;
+                gap: 20px;
             }
             
             .crossword-grid {
-                grid-template-columns: repeat(20, 22px);
-                grid-template-rows: repeat(15, 22px);
-                padding: 15px;
+                grid-template-columns: repeat(20, 18px);
+                grid-template-rows: repeat(15, 18px);
+                padding: 10px;
                 gap: 1px;
             }
             
             .cell {
-                width: 22px;
-                height: 22px;
-                font-size: 10px;
-                border-radius: 4px;
+                width: 18px;
+                height: 18px;
+                font-size: 9px;
+                border-radius: 3px;
             }
             
             .cell input {
-                font-size: 12px;
+                font-size: 10px;
             }
             
             .cell-number {
-                width: 12px;
-                height: 10px;
-                font-size: 8px;
+                width: 10px;
+                height: 8px;
+                font-size: 7px;
                 top: 1px;
                 left: 1px;
             }
             
             .clues-panel {
-                padding: 25px;
+                width: 100%;
+                max-height: none;
+                padding: 20px;
             }
             
             .clues-title {
@@ -767,14 +783,14 @@
             }
             
             .clue-item {
-                padding: 15px;
-                gap: 15px;
+                padding: 10px;
+                gap: 10px;
             }
             
             .clue-number {
-                width: 28px;
-                height: 28px;
-                font-size: 12px;
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
             }
             
             .btn {
@@ -1974,5 +1990,5 @@
             setInterval(updateTimer, 1000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a857283588c7d1',t:'MTc1NDQxODM2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a8e1f9005ab6df',t:'MTc1NDQyNDA0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
